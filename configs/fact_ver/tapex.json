@@ -1,0 +1,96 @@
+{
+    "seed": 0,
+    "data": {
+        "name": "tabfact",
+        "data_path": "tab_fact",
+        "use_title": true,
+        "use_table_caption": true,
+        "pad_token_id": 0,
+        "masked_output_file": "datasets/scigen/masked_desc.pkl",
+        "maskable_words_file": "datasets/scigen/maskable_words.pkl",
+        "config_name": "tab_fact",
+        "num_classes": 2,
+        "decompose_table": false,
+        "topk_cells": 15,
+        "soft_decomposition_data_path": "datasets/wiki_tq"
+    },
+    "logging": {
+        "log_dir": "logs/fact_ver_tapex_cluster_gaussian_bs8_new",
+        "project": "fact_ver",
+        "name": "fact_ver_tapex_cluster_gaussian_bs8_new",
+        "version": "fact_ver_tapex_cluster_gaussian_bs8_new",
+        "save_dir": "",
+        "log_model": true,
+        "checkpoint_dir": "logs/fact_ver_tapex_cluster_gaussian_bs8_new/checkpoints"
+    },
+
+    "metrics": {
+        "bert_score_model": "bert-base-uncased"
+    },
+
+    "model": {
+        "model_name": "tapex",
+        "model_path": "nielsr/tapex-large-finetuned-tabfact",
+        "soft_decomposition_model": "bert-base",
+        "soft_decomposition_model_path": "bert-base-uncased",
+        "checkpoint": null,
+        "use_table": true,
+        "pretraining_task": "description_generation",
+        "num_return_sequences": 1,
+        "num_beams": 3,
+        "use_pretrained": true,
+        "use_position_ids": false,
+        "type": "encoder-decoder",
+        "num_encoders": 2,
+        "quantize": false,
+        "peft": false,
+        "cluster_encodings": true,
+        "use_token_type_ids": true
+    },
+
+    "system": {
+        "num_workers": 4,
+        "gpus": 2
+    },
+
+    "tokenizer": {
+        "tokenizer_path": "nielsr/tapex-large-finetuned-tabfact",
+        "soft_decomposition_tokenizer_path": "bert-base-uncased",
+        "local_files_only": false,
+        "add_special_tokens": true,
+        "padding": "max_length",
+        "truncation": true,
+        "max_length": 1024,
+        "input_max_length": 1024,
+        "output_max_length": 512,
+        "return_tensors": "pt",
+        "return_token_type_ids": true,
+        "return_attention_mask": true,
+        "special_table_tok": true,
+        "padding_side": "right",
+        "use_row_col_ids": false
+    },
+
+    "training": {
+        "epochs": 30,
+        "train_batch_size": 6,
+        "test_batch_size": 6,
+        "training_type": "sequence_classification",
+        "use_title": false,
+        "downstream": true,
+        "accumulate_grad_batches": 2,
+        "sync_batchnorm": true,
+        "gradient_clip_val": 1,
+        "lr": 1e-5,
+        "scheduler": false,
+        "grad_accumulation": true,
+        "accumulation_steps": 1,
+        "criterion": "cross_entropy",
+        "sharded": false,
+        "layerwise_learning_rate_decay": 0.9,
+        "weight_decay": 0.01,
+        "adam_epsilon": 1e-6,
+        "use_bertadam": false,
+        "num_warmup_steps": 0
+    }
+}

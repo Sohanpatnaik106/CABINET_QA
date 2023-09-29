@@ -1,0 +1,99 @@
+{
+    "seed": 0,
+    "data": {
+        "name": "wikitq",
+        "data_path": "wikitablequestions",
+        "use_title": true,
+        "use_table_caption": true,
+        "pad_token_id": 0,
+        "masked_output_file": "datasets/scigen/masked_desc.pkl",
+        "maskable_words_file": "datasets/scigen/maskable_words.pkl",
+        "config_name": null,
+        "num_classes": null,
+        "decompose_table": true,
+        "topk_cells": 10,
+        "soft_decomposition_data_path": "datasets/wiki_tq",
+        "use_reason_in_input": false,
+        "bootstrap": false,
+        "use_reason_in_output": false,
+        "use_highlighted_cells": false
+    },
+    "logging": {
+        "log_dir": "logs/table_question_answering_flan_t5_xl_epochs_30",
+        "project": "table_question_answering",
+        "name": "table_question_answering_flan_t5_xl_epochs_30",
+        "version": "table_question_answering_flan_t5_xl_epochs_30",
+        "save_dir": "",
+        "log_model": true,
+        "checkpoint_dir": "logs/table_question_answering_flan_t5_xl_epochs_30/checkpoints"
+    },
+
+    "metrics": {
+        "bert_score_model": "bert-base-uncased"
+    },
+
+    "model": {
+        "model_name": "t5",
+        "model_path": "google/flan-t5-xl",
+        "soft_decomposition_model": "bert-large",
+        "soft_decomposition_model_path": "bert-large-uncased",
+        "checkpoint": null,
+        "use_table": true,
+        "pretraining_task": "masked_language_modelling",
+        "num_return_sequences": 1,
+        "num_beams": 3,
+        "use_pretrained": true,
+        "use_position_ids": false,
+        "type": "encoder-decoder",
+        "num_encoders": 1,
+        "quantize": false,
+        "peft": false,
+        "cluster_encodings": false
+    },
+
+    "system": {
+        "num_workers": 4,
+        "gpus": 2
+    },
+
+    "tokenizer": {
+        "tokenizer_path": "google/flan-t5-xl",
+        "soft_decomposition_tokenizer_path": "bert-large-uncased",
+        "local_files_only": false,
+        "add_special_tokens": true,
+        "padding": "max_length",
+        "truncation": true,
+        "max_length": 960,
+        "input_max_length": 960,
+        "output_max_length": 64,
+        "return_tensors": "pt",
+        "return_token_type_ids": true,
+        "return_attention_mask": true,
+        "special_table_tok": false,
+        "padding_side": "right",
+        "use_row_col_ids": false
+    },
+
+    "training": {
+        "epochs": 30,
+        "train_batch_size": 4,
+        "test_batch_size": 4,
+        "training_type": "table_question_answering",
+        "use_title": false,
+        "downstream": true,
+        "accumulate_grad_batches": 1,
+        "sync_batchnorm": true,
+        "gradient_clip_val": 1,
+        "lr": 1e-5,
+        "scheduler": false,
+        "grad_accumulation": true,
+        "accumulation_steps": 1,
+        "criterion": "cross_entropy",
+        "sharded": true,
+        "layerwise_learning_rate_decay": 0.9,
+        "weight_decay": 0.01,
+        "adam_epsilon": 1e-6,
+        "use_bertadam": false,
+        "num_warmup_steps": 0
+    }
+}

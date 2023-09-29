@@ -1,0 +1,82 @@
+{
+    "seed": 0,
+    "data": {
+        "name": "wikitq",
+        "data_path": "wikitablequestions",
+        "use_title": true,
+        "use_table_caption": true,
+        "pad_token_id": 0,
+        "masked_output_file": "datasets/scigen/masked_desc.pkl",
+        "maskable_words_file": "datasets/scigen/maskable_words.pkl",
+        "config_name": null,
+        "num_classes": null,
+        "decompose_table": false
+    },
+    "logging": {
+        "log_dir": "random_logs/table_question_answering_gpt2_wikitq_peft",
+        "project": "table_question_answering",
+        "name": "table_question_answering_gpt2_wikitq_peft",
+        "version": "table_question_answering_gpt2_wikitq_peft",
+        "save_dir": "",
+        "log_model": true,
+        "checkpoint_dir": "random_logs/table_question_answering_gpt2_wikitq_peft/checkpoints"
+    },
+
+    "metrics": {
+        "bert_score_model": "bert-base-uncased"
+    },
+
+    "model": {
+        "model_name": "gpt2",
+        "model_path": "gpt2",
+        "checkpoint": null,
+        "use_table": true,
+        "pretraining_task": "description_generation",
+        "num_return_sequences": 1,
+        "num_beams": 3,
+        "use_pretrained": true,
+        "use_position_ids": false,
+        "type": "decoder-only",
+        "quantize": false,
+        "peft": false
+    },
+
+    "system": {
+        "num_workers": 2,
+        "gpus": 2
+    },
+
+    "tokenizer": {
+        "tokenizer_path": "gpt2",
+        "local_files_only": false,
+        "add_special_tokens": true,
+        "padding": "max_length",
+        "truncation": true,
+        "max_length": 448,
+        "input_max_length": 448,
+        "output_max_length": 64,
+        "return_tensors": "pt",
+        "return_token_type_ids": true,
+        "return_attention_mask": true,
+        "special_table_tok": false,
+        "padding_side": "right"
+    },
+
+    "training": {
+        "epochs": 1,
+        "train_batch_size": 4,
+        "test_batch_size": 4,
+        "training_type": "table_question_answering",
+        "use_title": false,
+        "downstream": true,
+        "accumulate_grad_batches": 2,
+        "sync_batchnorm": false,
+        "gradient_clip_val": 1,
+        "lr": 1e-5,
+        "scheduler": false,
+        "grad_accumulation": true,
+        "accumulation_steps": 2,
+        "criterion": "cross_entropy",
+        "sharded": true
+    }
+}

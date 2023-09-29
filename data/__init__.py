@@ -1,0 +1,20 @@
+# from .dataloader import SciGenDataset, TabFactDataset, ToTToDataset, WikiTQDataset, SequentialQADataset
+
+
+from .scigen import SciGenDataset
+from .sequentialqa import SequentialQADataset
+from .tabfact import TabFactDataset
+from .totto import ToTToDataset, ToTToCellHighlightingDataset
+from .wikitq import WikiTQDataset
+from .fetaqa import FetaQADataset
+from .wikitq_reasoning import WikiTQReasoningDataset, WikiTQReasoningWithoutAnswerDataset
+from .wikitq_with_reason import WikiTQWithReasonDataset, WikiTQWithReasonAsInputDataset
+from .wikitq_bootstrap import WikiTQWithReasonAsInputBootstrapDataset
+from .wikitq_reasoning_and_answering import WikiTQWithReasonAsOutputDataset
+from .wikitq_highlighted_cell import WikiTQHighlightedCellsDataset
+from .sequentialqa_highlighted_cell import SequentialQAHighlightedCellsDataset
+from .fetaqa_highlighted_cell import FetaQAHighlightedCellsDataset
+from .wikisql import WikiSQLDataset, WikiSQLLogicalFormDataset
+from .wikisql_highlighted_cell import WikiSQLHighlightedCellsDataset, WikiSQLHighlightedCellsLogicalFormDataset
+from .wikisql_with_reason import WikiSQLWithReasonAsInputDataset
+from .fetaqa_with_reason import FetaQAWithReasonAsInputDataset

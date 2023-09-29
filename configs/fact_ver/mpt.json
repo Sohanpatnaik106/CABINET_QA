@@ -1,0 +1,82 @@
+{
+    "seed": 0,
+    "data": {
+        "name": "tabfact",
+        "data_path": "tab_fact",
+        "use_title": true,
+        "use_table_caption": true,
+        "pad_token_id": 0,
+        "masked_output_file": "datasets/scigen/masked_desc.pkl",
+        "maskable_words_file": "datasets/scigen/maskable_words.pkl",
+        "config_name": "tab_fact",
+        "num_classes": 2,
+        "decompose_table": false
+    },
+    "logging": {
+        "log_dir": "logs/fact_ver_mpt7b_last_three",
+        "project": "fact_ver",
+        "name": "fact_ver_mpt7b_last_three",
+        "version": "fact_ver_mpt7b_last_three",
+        "save_dir": "",
+        "log_model": true,
+        "checkpoint_dir": "logs/fact_ver_mpt7b_last_three/checkpoints"
+    },
+
+    "metrics": {
+        "bert_score_model": "bert-base-uncased"
+    },
+
+    "model": {
+        "model_name": "mpt",
+        "model_path": "mosaicml/mpt-7b",
+        "checkpoint": null,
+        "use_table": true,
+        "pretraining_task": "description_generation",
+        "num_return_sequences": 1,
+        "num_beams": 3,
+        "use_pretrained": true,
+        "use_position_ids": false,
+        "type": "decoder-only",
+        "quantize": true,
+        "peft": true
+    },
+
+    "system": {
+        "num_workers": 2,
+        "gpus": 2
+    },
+
+    "tokenizer": {
+        "tokenizer_path": "mosaicml/mpt-7b",
+        "local_files_only": false,
+        "add_special_tokens": true,
+        "padding": "max_length",
+        "truncation": true,
+        "max_length": 2048,
+        "input_max_length": 2048,
+        "output_max_length": 512,
+        "return_tensors": "pt",
+        "return_token_type_ids": true,
+        "return_attention_mask": true,
+        "special_table_tok": false,
+        "padding_side": "right"
+    },
+
+    "training": {
+        "epochs": 5,
+        "train_batch_size": 2,
+        "test_batch_size": 2,
+        "training_type": "sequence_classification",
+        "use_title": false,
+        "downstream": true,
+        "accumulate_grad_batches": 4,
+        "sync_batchnorm": true,
+        "gradient_clip_val": 1,
+        "lr": 1e-5,
+        "scheduler": false,
+        "grad_accumulation": true,
+        "accumulation_steps": 1,
+        "criterion": "cross_entropy",
+        "sharded": false
+    }
+}

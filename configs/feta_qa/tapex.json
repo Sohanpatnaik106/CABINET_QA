@@ -1,0 +1,99 @@
+{
+    "seed": 0,
+    "data": {
+        "name": "fetaqa",
+        "data_path": "DongfuTingle/FeTaQA",
+        "use_title": true,
+        "use_table_caption": true,
+        "pad_token_id": 0,
+        "masked_output_file": "datasets/scigen/masked_desc.pkl",
+        "maskable_words_file": "datasets/scigen/maskable_words.pkl",
+        "config_name": null,
+        "num_classes": null,
+        "decompose_table": false,
+        "topk_cells": 15,
+        "soft_decomposition_data_path": "datasets/wiki_tq",
+        "use_reason_in_input": true,
+        "bootstrap": false,
+        "use_reason_in_output": false,
+        "use_highlighted_cells": false
+    },
+    "logging": {
+        "log_dir": "logs/fetaqa_table_question_answering_omnitab_cluster_gaussian_reg",
+        "project": "table_question_answering",
+        "name": "fetaqa_table_question_answering_omnitab_cluster_gaussian_reg",
+        "version": "fetaqa_table_question_answering_omnitab_cluster_gaussian_reg",
+        "save_dir": "",
+        "log_model": true,
+        "checkpoint_dir": "logs/fetaqa_table_question_answering_omnitab_cluster_gaussian_reg/checkpoints"
+    },
+
+    "metrics": {
+        "bert_score_model": "bert-base-uncased"
+    },
+
+    "model": {
+        "model_name": "tapex",
+        "model_path": "neulab/omnitab-large-finetuned-wtq",
+        "soft_decomposition_model": "bert-base",
+        "soft_decomposition_model_path": "bert-base-uncased",
+        "checkpoint": null,
+        "use_table": true,
+        "pretraining_task": "masked_language_modelling",
+        "num_return_sequences": 1,
+        "num_beams": 3,
+        "use_pretrained": true,
+        "use_position_ids": false,
+        "type": "encoder-decoder",
+        "num_encoders": 2,
+        "quantize": false,
+        "peft": false,
+        "cluster_encodings": true
+    },
+
+    "system": {
+        "num_workers": 4,
+        "gpus": 2
+    },
+
+    "tokenizer": {
+        "tokenizer_path": "neulab/omnitab-large-finetuned-wtq",
+        "soft_decomposition_tokenizer_path": "bert-base-uncased",
+        "local_files_only": false,
+        "add_special_tokens": true,
+        "padding": "max_length",
+        "truncation": true,
+        "max_length": 896,
+        "input_max_length": 896,
+        "output_max_length": 128,
+        "return_tensors": "pt",
+        "return_token_type_ids": true,
+        "return_attention_mask": true,
+        "special_table_tok": true,
+        "padding_side": "right",
+        "use_row_col_ids": false
+    },
+
+    "training": {
+        "epochs": 30,
+        "train_batch_size": 8,
+        "test_batch_size": 8,
+        "training_type": "descriptive_table_question_answering",
+        "use_title": false,
+        "downstream": true,
+        "accumulate_grad_batches": 2,
+        "sync_batchnorm": true,
+        "gradient_clip_val": 1,
+        "lr": 1e-5,
+        "scheduler": false,
+        "grad_accumulation": true,
+        "accumulation_steps": 1,
+        "criterion": "cross_entropy",
+        "sharded": false,
+        "layerwise_learning_rate_decay": 0.9,
+        "weight_decay": 0.01,
+        "adam_epsilon": 1e-6,
+        "use_bertadam": false,
+        "num_warmup_steps": 0
+    }
+}
