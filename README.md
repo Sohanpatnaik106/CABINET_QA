@@ -38,13 +38,35 @@ This repository contains codes for some baselines and our proposed method. The d
 ### Experiments
 
 Please download the datasets from [here](https://drive.google.com/drive/folders/1Jl0poE5EDflVccDJZ8JNEzmQOZ_D_z-t?usp=drive_link)
+Please download the checkpoints from [here](https://drive.google.com/drive/folders/1h7BkGdJqxWYL1IHFj7N7efm36Lv9bZN2?usp=sharing)
 
-To run the experiments with a certain config, run the following command
+To run the experiments and train the model with a certain config, run the following command
 ```
   python main.py --config <config_path>
+```
+
+To evaluate the trained model on a particular dataset, run the following command
+```
+  python evaluate.py --config <config_path> --device <device_name> -- --ckpt_path <checkpoint_path>
 ```
 
 For CABINET, set the ```<config_path>``` as follows for the different datasets
 - For WikiTQ, ```<config_path> = configs/wiki_tq_clustering_and_highlighting/tapex.json```
 - For WikiSQL, ```<config_path> = configs/wiki_sql_clustering_and_highlighting/tapex.json```
 - For FeTaQA, ```<config_path> = configs/feta_qa_clustering_and_highlighting/tapex.json```
+
+### Citation
+
+If you find this work useful and relevant to your research, please cite it. 
+```
+  @inproceedings{
+    patnaik2024cabinet,
+    title={{CABINET}: Content Relevance-based Noise Reduction for Table Question Answering},
+    author={Sohan Patnaik and Heril Changwal and Milan Aggarwal and Sumit Bhatia and Yaman Kumar and Balaji Krishnamurthy},
+    booktitle={The Twelfth International Conference on Learning Representations},
+    year={2024},
+    url={https://openreview.net/forum?id=SQrHpTllXa}
+  }
+```
+### Contact
+For questions related to this code, please raise an issue and you can mail us at `sohanpatnaik106@gmail.com`.
