@@ -1,7 +1,6 @@
 # CABINET: CONTENT RELEVANCE BASED NOISE REDUCTION FOR TABLE QUESTION ANSWERING
 
-Table understanding capability of Large Language Models (LLMs) has been extensively studied through the task of question-answering (QA) over tables. Typically, only a small part of the whole table is relevant to derive the answer for a given question. The irrelevant parts act as noise and are distracting information, resulting in sub-optimal performance due to the vulnerability of LLMs to noise. To mitigate this, we propose CABINET (Content RelevAnce-Based NoIse ReductioN for TablE QuesTion-Answering) – a framework to enable LLMs to focus on relevant tabular data by suppressing extraneous information. CABINET comprises an Unsupervised Relevance Scorer (URS), trained differentially with the QA LLM, that weighs the table content based on its relevance to the input question before feeding it to the question-answering LLM (QA LLM). To further aid the relevance scorer, CABINET employs a weakly supervised module that generates a parsing statement describing the criteria of rows and columns relevant to the question and highlights the content of corresponding table cells. CABINET significantly outperforms various tabular LLM baselines, as well as GPT3-based
-in-context learning methods, is more robust to noise, maintains outperformance on tables of varying sizes, and establishes new SoTA performance on WikiTQ, FeTaQA, and WikiSQL datasets.
+Table understanding capability of Large Language Models (LLMs) has been extensively studied through the task of question-answering (QA) over tables. Typically, only a small part of the whole table is relevant to derive the answer for a given question. The irrelevant parts act as noise and are distracting information, resulting in sub-optimal performance due to the vulnerability of LLMs to noise. To mitigate this, we propose CABINET (Content RelevAnce-Based NoIse ReductioN for TablE QuesTion-Answering) – a framework to enable LLMs to focus on relevant tabular data by suppressing extraneous information. CABINET comprises an Unsupervised Relevance Scorer (URS), trained differentially with the QA LLM, that weighs the table content based on its relevance to the input question before feeding it to the question-answering LLM (QA LLM). To further aid the relevance scorer, CABINET employs a weakly supervised module that generates a parsing statement describing the criteria of rows and columns relevant to the question and highlights the content of corresponding table cells. CABINET significantly outperforms various tabular LLM baselines, as well as GPT3-based in-context learning methods, is more robust to noise, maintains outperformance on tables of varying sizes, and establishes new SoTA performance on WikiTQ, FeTaQA, and WikiSQL datasets.
 
 ### File Description
 
@@ -38,6 +37,7 @@ This repository contains codes for some baselines and our proposed method. The d
 ### Experiments
 
 Please download the datasets from [here](https://drive.google.com/drive/folders/1Jl0poE5EDflVccDJZ8JNEzmQOZ_D_z-t?usp=drive_link)
+
 Please download the checkpoints from [here](https://drive.google.com/drive/folders/1h7BkGdJqxWYL1IHFj7N7efm36Lv9bZN2?usp=sharing)
 
 To run the experiments and train the model with a certain config, run the following command
@@ -47,7 +47,7 @@ To run the experiments and train the model with a certain config, run the follow
 
 To evaluate the trained model on a particular dataset, run the following command
 ```
-  python evaluate.py --config <config_path> --device <device_name> -- --ckpt_path <checkpoint_path>
+  python evaluate.py --config <config_path> --device <device_name> --ckpt_path <checkpoint_path>
 ```
 
 For CABINET, set the ```<config_path>``` as follows for the different datasets
