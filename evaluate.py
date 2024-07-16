@@ -61,12 +61,14 @@ if __name__ == "__main__":
 
         if config.training.training_type == "descriptive_table_question_answering":
             # NOTE: Compute SacreBLEU score - For FeTaQA dataset
-            actual_sequence = [[actual_sequence]]
-            predicted_sequence = [predicted_sequence]
+            # actual_sequence = [[a] for a in actual_sequence]
+            # predicted_sequence = [predicted_sequence]
 
-            res = sacrebleu.compute(predictions = predicted_sequence, references = actual_sequence)
-            count += res["score"]
-            total += len(predicted_sequence)
+            for a, p in zip(actual_sequence, predicted_sequence):
+                
+                res = sacrebleu.compute(predictions = [p], references = [[a]])
+                count += res["score"]
+                total += 1
 
         else:
 
